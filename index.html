@@ -9,7 +9,7 @@
     <meta name="author" content="Alloy Wheels Info">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://alloywheels.info/">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233499db'%3E%3Cpath d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233498db'%3E%3Cpath d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -20,7 +20,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0e17; color: #e8edf2; line-height: 1.5; }
         
-        /* Alloy Wheels Info - Blue theme */
+        /* Alloy Wheels Info - Blue theme (same as fitmentguide but blue) */
         :root {
             --primary: #3498db;
             --primary-dark: #2980b9;
@@ -63,10 +63,11 @@
         .spec-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; font-size: 0.7rem; }
         .spec-tag { background: #1a1f2e; padding: 0.2rem 0.6rem; border-radius: 40px; color: #88c8f0; }
         .spec-tag-pcd { background: var(--primary-glow); font-weight: 600; color: var(--primary); }
-        .wheel-btn { display: inline-flex; align-items: center; gap: 5px; background: #1a1f2e; border: 1px solid var(--primary); color: var(--primary); padding: 0.35rem 0.7rem; border-radius: 60px; font-size: 0.65rem; font-weight: 600; text-decoration: none; margin-top: 0.5rem; transition: 0.2s; }
-        .wheel-btn:hover { background: var(--primary); color: #0a0e17; }
+        .wolfrace-btn { display: inline-flex; align-items: center; gap: 5px; background: #1a1f2e; border: 1px solid var(--primary); color: var(--primary); padding: 0.35rem 0.7rem; border-radius: 60px; font-size: 0.65rem; font-weight: 600; text-decoration: none; margin-top: 0.5rem; transition: 0.2s; }
+        .wolfrace-btn:hover { background: var(--primary); color: #0a0e17; }
         .no-results { text-align: center; padding: 3rem; background: var(--dark-card); border-radius: 32px; }
         footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.7rem; color: #6c7a8a; }
+        footer a { color: var(--primary); text-decoration: none; }
         @media (max-width: 700px) { .hero h1 { font-size: 1.6rem; } .search-row { flex-direction: column; } .fitment-grid { grid-template-columns: 1fr; } .search-group { min-width: 100%; } }
         .loading { text-align: center; padding: 3rem; color: #6c7a8a; }
     </style>
@@ -85,7 +86,7 @@
 
 <div class="container">
     <div class="hero">
-        <h1><i class="fas fa-search"></i> Alloy Wheel Fitment Search</h1>
+        <h1><i class="fas fa-search"></i> Wheel Fitment Search</h1>
         <p>Select your car make, then choose model — view PCD, offset, bore & tyre size</p>
         <div class="stats-badge" id="statsBadge"><i class="fas fa-spinner fa-pulse"></i> Loading database...</div>
     </div>
@@ -137,11 +138,11 @@
 <footer>
     <p><i class="fas fa-copyright"></i> Alloy Wheels Info — Complete wheel fitment database</p>
     <p>Fitment data for reference only — always verify with manufacturer</p>
-    <p><a href="sitemap.xml" style="color: #3498db; text-decoration: none;">Sitemap</a></p
+    <p><a href="sitemap.xml">📄 Sitemap</a></p>
 </footer>
 
 <script>
-// Alloy Wheels Info - Main Script (Blue Theme)
+// Alloy Wheels Info - Main Script (identical to fitmentguide, blue theme)
 (function() {
     let fitmentData = [];
     let modelsByMake = {};
@@ -154,15 +155,15 @@
     const resultCount = document.getElementById('resultCount');
     const statsBadge = document.getElementById('statsBadge');
     
-    // Generate wheel URL (placeholder - replace with actual affiliate link)
-    function createWheelUrl(title) {
+    // Generate Wolfrace URL from vehicle title (same as fitmentguide)
+    function createWolfraceUrl(title) {
         let slug = title.toLowerCase()
             .replace(/ to /g, '-to-')
             .replace(/ /g, '-')
             .replace(/[^a-z0-9-]/g, '')
             .replace(/-+/g, '-')
             .replace(/^-|-$/g, '');
-        return `https://www.alloywheels.com/search?q=${encodeURIComponent(slug)}`;
+        return `https://www.wolfrace.co.uk/${slug}-alloy-wheels`;
     }
     
     function escapeHtml(str) {
@@ -182,7 +183,7 @@
             return;
         }
         
-        const wheelUrl = createWheelUrl(record.title);
+        const wolfraceUrl = createWolfraceUrl(record.title);
         resultCount.innerHTML = `Fitment for ${escapeHtml(record.title)}`;
         resultGrid.innerHTML = `
             <div class="fitment-card">
@@ -201,7 +202,7 @@
                     <span class="spec-tag">Tyre: ${record.tyre || '—'}</span>
                     <span class="spec-tag">Width Range: ${record.width || '—'}"</span>
                 </div>
-                <a href="${wheelUrl}" target="_blank" rel="sponsored nofollow" class="wheel-btn"><i class="fas fa-external-link-alt"></i> Find Alloy Wheels</a>
+                <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
             </div>
         `;
     }
