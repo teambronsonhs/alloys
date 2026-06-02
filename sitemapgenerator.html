@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Fitment Guide - Sitemap Generator (Clean URLs)</title>
+    <title>Alloy Wheels Info - Sitemap Generator (Clean URLs)</title>
     <style>
-        body { font-family: monospace; max-width: 800px; margin: 0 auto; padding: 20px; background: #0c0f15; color: #fff; }
-        button, input { padding: 10px; margin: 10px 0; background: #2a2f3a; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-        button { background: #ff6b35; font-weight: bold; }
-        pre { background: #1e242c; padding: 15px; overflow-x: auto; border-radius: 5px; max-height: 400px; font-size: 12px; }
+        body { font-family: monospace; max-width: 800px; margin: 0 auto; padding: 20px; background: #0a0e17; color: #fff; }
+        button, input { padding: 10px; margin: 10px 0; background: #1a1f2e; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+        button { background: #3498db; font-weight: bold; }
+        button:hover { background: #2980b9; }
+        pre { background: #111622; padding: 15px; overflow-x: auto; border-radius: 5px; max-height: 400px; font-size: 12px; }
         .status { margin: 10px 0; padding: 10px; border-radius: 5px; }
         .error { background: #e74c3c20; border-left: 3px solid #e74c3c; }
         .success { background: #2ecc7120; border-left: 3px solid #2ecc71; }
         .info { background: #3498db20; border-left: 3px solid #3498db; }
+        h1 { color: #3498db; }
     </style>
 </head>
 <body>
-    <h1>🗺️ Fitment Guide Sitemap Generator</h1>
-    <p>This tool creates a <code>sitemap.xml</code> with <strong>clean URLs</strong> like <code>/volvo-c70-1997-to-2005</code></p>
+    <h1>🛞 Alloy Wheels Info - Sitemap Generator</h1>
+    <p>This tool creates a <code>sitemap.xml</code> with <strong>clean URLs</strong> like <code>/volvo-c70-1997-to-2005</code> for <strong>alloywheels.info</strong></p>
     
     <div>
-        <input type="text" id="jsonUrl" placeholder="https://fitmentguide.co.uk/fitment-safe.json" style="width: 100%;" value="fitment-safe.json">
+        <input type="text" id="jsonUrl" placeholder="https://alloywheels.info/fitment-safe.json" style="width: 100%;" value="fitment-safe.json">
         <br>
         <button id="loadBtn">1. Load JSON Data</button>
         <button id="generateBtn" disabled>2. Generate Sitemap (Clean URLs)</button>
@@ -104,7 +106,8 @@
 
             showStatus(`Generating sitemap with clean URLs for ${records.length} vehicles...`, false, true);
             
-            const baseUrl = 'https://fitmentguide.co.uk';
+            // Change this to your alloywheels.info domain
+            const baseUrl = 'https://alloywheels.info';
             const today = new Date().toISOString().split('T')[0];
             
             let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -157,7 +160,7 @@
             link.click();
             URL.revokeObjectURL(link.href);
             
-            showStatus('✅ sitemap.xml downloaded! Upload this file to your GitHub repository.');
+            showStatus('✅ sitemap.xml downloaded! Upload this file to your GitHub repository for alloywheels.info');
         });
     </script>
 </body>
