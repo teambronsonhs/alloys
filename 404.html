@@ -2,18 +2,44 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <title>Redirecting - Alloy Wheels Info</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #0a0e17; 
+            color: #fff; 
+            text-align: center; 
+            padding: 50px;
+        }
+        .loader {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #3498db;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        a { color: #3498db; }
+    </style>
     <script>
         // Get the path (e.g., /volvo-c70-1997-to-2005)
         const path = window.location.pathname;
         // Remove the leading slash and .html if present
         let slug = path.substring(1).replace(/\.html$/, '');
         if (slug && slug !== 'index') {
-            // Redirect to the parameter version
-            window.location.replace(`https://fitmentguide.co.uk/?car=${encodeURIComponent(slug)}`);
+            // Redirect to the parameter version for alloywheels.info
+            window.location.replace(`https://alloywheels.info/?car=${encodeURIComponent(slug)}`);
         } else {
-            window.location.replace('https://fitmentguide.co.uk/');
+            window.location.replace('https://alloywheels.info/');
         }
     </script>
 </head>
-<body>Redirecting...</body>
+<body>
+    <div class="loader"></div>
+    <p>Redirecting to <a href="https://alloywheels.info/">Alloy Wheels Info</a>...</p>
+</body>
 </html>
