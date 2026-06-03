@@ -20,7 +20,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0e17; color: #e8edf2; line-height: 1.5; }
         
-        /* Alloy Wheels Info - Blue theme (same as fitmentguide but blue) */
+        /* Alloy Wheels Info - Blue theme */
         :root {
             --primary: #3498db;
             --primary-dark: #2980b9;
@@ -142,7 +142,7 @@
 </footer>
 
 <script>
-// Alloy Wheels Info - Main Script (identical to fitmentguide, blue theme)
+// Alloy Wheels Info - Main Script with auto-scroll to results (blue theme)
 (function() {
     let fitmentData = [];
     let modelsByMake = {};
@@ -155,7 +155,17 @@
     const resultCount = document.getElementById('resultCount');
     const statsBadge = document.getElementById('statsBadge');
     
-    // Generate Wolfrace URL from vehicle title (same as fitmentguide)
+    // Helper function to scroll to results (mobile fix)
+    function scrollToResults() {
+        const resultsHeader = document.querySelector('.results-header');
+        if (resultsHeader) {
+            resultsHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            resultGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+    
+    // Generate Wolfrace URL from vehicle title
     function createWolfraceUrl(title) {
         let slug = title.toLowerCase()
             .replace(/ to /g, '-to-')
@@ -205,6 +215,8 @@
                 <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
             </div>
         `;
+        // Scroll to results after rendering
+        scrollToResults();
     }
     
     function populateModelDropdown(make) {
@@ -364,6 +376,8 @@
         currentResult = null;
         renderSingleResult(null);
         resultCount.innerHTML = `Select a model for ${selectedMake}`;
+        // Scroll to model dropdown after make selection (helps on mobile)
+        modelSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
     
     modelSelect.addEventListener('change', function() {
@@ -382,6 +396,7 @@
             const url = new URL(window.location);
             url.searchParams.set('car', slug);
             window.history.replaceState({}, '', url);
+            // Scroll handled inside renderSingleResult
         } catch(e) {
             const title = selectedOption.value;
             const make = makeSelect.value;
@@ -393,6 +408,7 @@
                 const url = new URL(window.location);
                 url.searchParams.set('car', slug);
                 window.history.replaceState({}, '', url);
+                // Scroll handled inside renderSingleResult
             }
         }
     });
