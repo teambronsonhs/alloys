@@ -14,7 +14,7 @@ export class FitmentManager {
     async loadData() {
     // Try primary file first
     try {
-        const response = await fetch('/fitment-data.json');
+        const response = await fetch('fitment-safe.json');
         if (response.ok) {
             const data = await response.json();
             // Handle both array and object formats
@@ -31,7 +31,7 @@ export class FitmentManager {
 
     // Try fallback file
     try {
-        const response = await fetch('/fitment-safe.json');
+        const response = await fetch('fitment-safe.json');
         if (response.ok) {
             const data = await response.json();
             this.fitmentData = Array.isArray(data) ? data : (data.records || []);
