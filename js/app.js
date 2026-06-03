@@ -54,7 +54,7 @@ class FitmentManager {
 
     async loadData() {
         try {
-            const response = await fetch('/fitment-data.json');
+            const response = await fetch('fitment-data.json');
             if (response.ok) {
                 this.fitmentData = await response.json();
                 this.organizeData();
@@ -65,7 +65,7 @@ class FitmentManager {
         }
 
         try {
-            const response = await fetch('/fitment-safe.json');
+            const response = await fetch('fitment-safe.json');
             if (response.ok) {
                 this.fitmentData = await response.json();
                 this.organizeData();
