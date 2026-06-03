@@ -21,7 +21,7 @@ export class FitmentManager {
             this.fitmentData = Array.isArray(data) ? data : (data.records || []);
             if (this.fitmentData.length > 0) {
                 this.organizeData();
-                console.log(`Loaded ${this.fitmentData.length} records from fitment-data.json`);
+                console.log(`Loaded ${this.fitmentData.length} records from fitment-safe.json`);
                 return;
             }
         }
