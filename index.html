@@ -9,399 +9,981 @@
     <meta name="author" content="Alloy Wheels Info">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://alloywheels.info/">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233498db'%3E%3Cpath d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e8c84a'%3E%3Cpath d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9372101106094036" crossorigin="anonymous"></script>
-    
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0e17; color: #e8edf2; line-height: 1.5; }
-        
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --primary: #3498db;
-            --primary-dark: #2980b9;
-            --primary-glow: rgba(52,152,219,0.3);
-            --dark: #0a0e17;
-            --dark-card: #111622;
-            --surface: #1a1f2e;
-            --border: #2a2f3e;
+            --gold: #e8c84a;
+            --gold-dim: rgba(232,200,74,0.12);
+            --gold-mid: rgba(232,200,74,0.4);
+            --ink: #080b10;
+            --surface: #0e1218;
+            --plate: #141920;
+            --rim: #1e2430;
+            --line: rgba(255,255,255,0.07);
+            --text: #f0f2f5;
+            --muted: #6b7585;
+            --accent-red: #e84a4a;
         }
-        
-        .header { background: rgba(10,14,23,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 1rem 1.5rem; }
-        .header-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-        .logo { font-size: 1.7rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .logo i { background: none; color: var(--primary); }
-        .nav-links { display: flex; gap: 1.2rem; }
-        .nav-links a { color: #ccc; text-decoration: none; font-weight: 500; transition: 0.2s; }
-        .nav-links a:hover { color: var(--primary); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; }
-        .hero { text-align: center; margin-bottom: 2rem; }
-        .hero h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .hero p { color: #9aa4bf; max-width: 650px; margin: 0.5rem auto 0; font-size: 0.9rem; }
-        .stats-badge { display: inline-block; background: var(--surface); padding: 0.3rem 1rem; border-radius: 40px; font-size: 0.7rem; margin-top: 1rem; }
-        .search-card { background: var(--dark-card); border-radius: 32px; padding: 1.8rem; border: 1px solid var(--border); margin-bottom: 2rem; }
-        .search-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; }
-        .search-group { flex: 1; min-width: 200px; }
-        .search-group label { display: block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 0.4rem; }
-        .search-group select, .search-group input { width: 100%; padding: 0.8rem 1rem; background: #1a1f2e; border: 1px solid #2e3545; border-radius: 60px; color: white; font-size: 0.9rem; outline: none; cursor: pointer; }
-        .search-group select:focus, .search-group input:focus { border-color: var(--primary); }
-        .search-group input::placeholder { color: #6c7a8a; }
-        .search-group select option { background: #1a1f2e; }
-        .search-btn { background: var(--primary); border: none; padding: 0.8rem 2rem; border-radius: 60px; font-weight: 700; color: #0a0e17; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; }
-        .search-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .reset-btn { background: #2a2f3e; border: none; padding: 0.8rem 1.5rem; border-radius: 60px; font-weight: 500; color: white; cursor: pointer; }
-        .ad-top, .ad-mid, .ad-bottom { text-align: center; margin: 1.5rem 0; min-height: 90px; background: rgba(0,0,0,0.2); border-radius: 20px; display: flex; align-items: center; justify-content: center; }
-        .results-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 1.5rem; }
-        .fitment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.2rem; }
-        .fitment-card { background: var(--dark-card); border-radius: 20px; padding: 1rem; border-left: 3px solid var(--primary); border: 1px solid var(--border); border-left-width: 3px; transition: 0.2s; }
-        .fitment-card:hover { transform: translateY(-3px); border-color: var(--primary); }
-        .vehicle-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; color: #fff; }
-        .spec-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; font-size: 0.7rem; }
-        .spec-tag { background: #1a1f2e; padding: 0.2rem 0.6rem; border-radius: 40px; color: #88c8f0; }
-        .spec-tag-pcd { background: var(--primary-glow); font-weight: 600; color: var(--primary); }
-        .wolfrace-btn { display: inline-flex; align-items: center; gap: 5px; background: #1a1f2e; border: 1px solid var(--primary); color: var(--primary); padding: 0.35rem 0.7rem; border-radius: 60px; font-size: 0.65rem; font-weight: 600; text-decoration: none; margin-top: 0.5rem; transition: 0.2s; }
-        .wolfrace-btn:hover { background: var(--primary); color: #0a0e17; }
-        .no-results { text-align: center; padding: 3rem; background: var(--dark-card); border-radius: 32px; }
-        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.7rem; color: #6c7a8a; }
-        footer a { color: var(--primary); text-decoration: none; }
-        @media (max-width: 700px) { .hero h1 { font-size: 1.6rem; } .search-row { flex-direction: column; } .fitment-grid { grid-template-columns: 1fr; } .search-group { min-width: 100%; } }
-        .loading { text-align: center; padding: 3rem; color: #6c7a8a; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--ink);
+            color: var(--text);
+            line-height: 1.55;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* NOISE OVERLAY */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* HEADER */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(8,11,16,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--line);
+        }
+        .header-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-wheel {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin 12s linear infinite;
+        }
+        .logo-wheel::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .logo-wheel::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: var(--gold);
+            transform: rotate(45deg);
+            opacity: 0.5;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: var(--text);
+        }
+        .logo-text span { color: var(--gold); }
+        .nav { display: flex; align-items: center; gap: 2rem; }
+        .nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .nav a:hover { color: var(--gold); }
+        .nav-badge {
+            background: var(--gold);
+            color: var(--ink);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        /* PAGE WRAPPER */
+        .page { max-width: 1320px; margin: 0 auto; padding: 0 2rem 4rem; position: relative; z-index: 1; }
+
+        /* HERO */
+        .hero {
+            padding: 5rem 0 3rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: end;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 3rem;
+        }
+        .hero-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            letter-spacing: 4px;
+            line-height: 0.95;
+            color: var(--text);
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--gold);
+            display: block;
+        }
+        .hero-sub {
+            margin-top: 1.2rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 300;
+            max-width: 420px;
+            line-height: 1.7;
+        }
+        .hero-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: right;
+        }
+        .stat-block {}
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* AD */
+        .ad-zone {
+            background: var(--plate);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        /* SEARCH PANEL */
+        .search-panel {
+            background: var(--plate);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+        .search-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.8rem;
+            border-bottom: 1px solid var(--line);
+        }
+        .search-label {
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .search-label::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .reset-btn {
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: 'DM Sans', sans-serif;
+            padding: 0.45rem 1rem;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .reset-btn:hover { border-color: var(--muted); color: var(--text); }
+        .search-body { padding: 1.8rem; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-end; }
+        .search-group { flex: 1; min-width: 220px; }
+        .sg-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.6rem;
+        }
+        .sg-label svg { width: 12px; height: 12px; opacity: 0.6; }
+        select {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            background: var(--rim);
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7585' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        select:focus { border-color: var(--gold); }
+        select:disabled { opacity: 0.35; cursor: not-allowed; }
+        select option { background: #1a1f2b; }
+
+        /* STATUS BAR */
+        .status-bar {
+            padding: 0.7rem 1.8rem;
+            border-top: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.72rem;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+        }
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .status-dot.loading { background: var(--muted); animation: pulse 1s linear infinite; }
+        .status-dot.error { background: var(--accent-red); animation: none; }
+
+        /* RESULTS HEADER */
+        .results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--line);
+        }
+        .results-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: var(--text);
+        }
+        .results-title span { color: var(--gold); }
+
+        /* FITMENT CARD */
+        .fitment-card {
+            background: var(--plate);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden;
+            animation: fadeIn 0.35s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+        .card-header {
+            padding: 1.5rem 1.8rem;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .vehicle-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: var(--text);
+            line-height: 1.1;
+        }
+        .vehicle-badge {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: var(--gold-dim);
+            border: 1px solid var(--gold-mid);
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .card-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0;
+        }
+        .spec-cell {
+            padding: 1.2rem 1.8rem;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+        .spec-cell:last-child { border-right: none; }
+        .spec-key {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+        .spec-val {
+            font-family: 'DM Mono', monospace;
+            font-size: 1.05rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .spec-val.highlight { color: var(--gold); }
+
+        .card-footer {
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .notice {
+            font-size: 0.72rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .notice::before {
+            content: 'i';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--muted);
+            border-radius: 50%;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+        }
+        .wolfrace-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .wolfrace-btn:hover { background: #f0d45e; transform: translateY(-1px); }
+        .wolfrace-btn svg { width: 12px; height: 12px; }
+
+        /* WHEEL SVG DIAGRAM */
+        .wheel-diagram {
+            padding: 2rem 1.8rem;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .wheel-svg-wrap {
+            flex-shrink: 0;
+        }
+        .wheel-annotations {
+            flex: 1;
+            min-width: 200px;
+        }
+        .annot-row {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 0.82rem;
+        }
+        .annot-row:last-child { border-bottom: none; }
+        .annot-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .annot-key { color: var(--muted); min-width: 100px; font-size: 0.72rem; letter-spacing: 0.5px; }
+        .annot-val { font-family: 'DM Mono', monospace; color: var(--text); font-size: 0.88rem; }
+
+        /* EMPTY / LOADING STATES */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--plate);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+        }
+        .empty-icon {
+            margin: 0 auto 1.5rem;
+            width: 80px;
+            height: 80px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .empty-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+        .empty-sub { font-size: 0.82rem; color: var(--muted); }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--line);
+            margin-top: 4rem;
+            padding: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.72rem;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+        }
+        footer a { color: var(--gold); text-decoration: none; }
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: var(--muted);
+        }
+
+        /* TICKER */
+        .ticker {
+            overflow: hidden;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--surface);
+            padding: 0.5rem 0;
+            margin-bottom: 3rem;
+        }
+        .ticker-inner {
+            display: flex;
+            gap: 3rem;
+            animation: ticker 25s linear infinite;
+            white-space: nowrap;
+            font-size: 0.68rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .ticker-item { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+        .ticker-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+        @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; padding: 3rem 0 2rem; }
+            .hero-stats { flex-direction: row; text-align: left; }
+            .search-body { flex-direction: column; }
+            .search-group { min-width: 100%; }
+            .card-specs { grid-template-columns: repeat(2, 1fr); }
+            .wheel-diagram { flex-direction: column; }
+            footer { flex-direction: column; }
+            .nav .nav-badge { display: none; }
+        }
     </style>
 </head>
 <body>
 
 <header class="header">
-    <div class="header-container">
-        <div class="logo"><i class="fas fa-cog"></i> ALLOY WHEELS</div>
-        <div class="nav-links">
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-wheel"></div>
+            <div class="logo-text">ALLOY<span>WHEELS</span>.INFO</div>
+        </div>
+        <nav class="nav">
             <a href="#search">Search</a>
             <a href="#results">Database</a>
-        </div>
+            <div class="nav-badge" id="statsBadge">LOADING…</div>
+        </nav>
     </div>
 </header>
 
-<div class="container">
+<div class="page">
+
     <div class="hero">
-        <h1><i class="fas fa-search"></i> Wheel Fitment Search</h1>
-        <p>Select your car make, then choose model — view PCD, offset, bore & tyre size</p>
-        <div class="stats-badge" id="statsBadge"><i class="fas fa-spinner fa-pulse"></i> Loading database...</div>
+        <div>
+            <div class="hero-eyebrow">Fitment Database</div>
+            <h1>WHEEL<em>FITMENT</em>SEARCH</h1>
+            <p class="hero-sub">Precise PCD, offset, centre bore, and tyre specifications for your vehicle. Select make and model to retrieve full fitment data.</p>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-block">
+                <div class="stat-num" id="heroCount">—</div>
+                <div class="stat-label">Records</div>
+            </div>
+            <div class="stat-block">
+                <div class="stat-num" id="heroMakes">—</div>
+                <div class="stat-label">Makes</div>
+            </div>
+        </div>
     </div>
 
-    <div class="ad-top">
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-inner" id="tickerInner">
+            <span class="ticker-item"><span class="ticker-dot"></span> PCD</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Offset</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Centre Bore</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Thread Size</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Tyre Size</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Rim Width</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Bolt Pattern</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Hub Bore</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> PCD</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Offset</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Centre Bore</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Thread Size</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Tyre Size</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Rim Width</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Bolt Pattern</span>
+            <span class="ticker-item"><span class="ticker-dot"></span> Hub Bore</span>
+        </div>
+    </div>
+
+    <div class="ad-zone">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9372101106094036" data-ad-slot="9123456789" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <div class="search-card" id="search">
-        <div class="search-row">
+    <div class="search-panel" id="search">
+        <div class="search-header">
+            <div class="search-label">Select Your Vehicle</div>
+            <button id="resetBtn" class="reset-btn">↺ Reset</button>
+        </div>
+        <div class="search-body">
             <div class="search-group">
-                <label><i class="fas fa-flag"></i> Make</label>
+                <div class="sg-label">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M5 6h6M5 10h4"/></svg>
+                    Make / Manufacturer
+                </div>
                 <select id="makeSelect">
-                    <option value="">-- Select Make --</option>
+                    <option value="">— Select Make —</option>
                 </select>
             </div>
             <div class="search-group">
-                <label><i class="fas fa-car"></i> Model</label>
-                <div class="model-select-wrapper">
-                    <select id="modelSelect" disabled>
-                        <option value="">-- Select Model --</option>
-                    </select>
+                <div class="sg-label">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11L4 5h8l2 6"/><circle cx="5" cy="12" r="1.5"/><circle cx="11" cy="12" r="1.5"/></svg>
+                    Model / Year Range
                 </div>
+                <select id="modelSelect" disabled>
+                    <option value="">— Select Model —</option>
+                </select>
             </div>
-            <div class="search-group">
-                <label>&nbsp;</label>
-                <div style="display: flex; gap: 0.6rem;">
-                    <button id="resetBtn" class="reset-btn"><i class="fas fa-undo"></i> Reset</button>
-                </div>
-            </div>
+        </div>
+        <div class="status-bar">
+            <div class="status-dot loading" id="statusDot"></div>
+            <span id="statusText">Loading fitment database…</span>
         </div>
     </div>
 
-    <div class="ad-mid">
+    <div class="ad-zone">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9372101106094036" data-ad-slot="9123456790" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <div class="results-header"><h3 id="resultCount">Select a make and model</h3></div>
-    <div id="fitmentGrid" class="fitment-grid"><div class="loading"><i class="fas fa-spinner fa-pulse"></i> Loading fitment data...</div></div>
+    <div id="results">
+        <div class="results-header">
+            <div class="results-title" id="resultsTitle">FITMENT <span>DATA</span></div>
+        </div>
+        <div id="fitmentOutput"></div>
+    </div>
 
-    <div class="ad-bottom">
+    <div class="ad-zone">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9372101106094036" data-ad-slot="9123456791" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
+
 </div>
 
-<footer>
-    <p><i class="fas fa-copyright"></i> Alloy Wheels Info — Complete wheel fitment database</p>
-    <p>Fitment data for reference only — always verify with manufacturer</p>
-    <p><a href="sitemap.xml">📄 Sitemap</a></p>
+<footer style="max-width:1320px;margin:0 auto;padding-left:2rem;padding-right:2rem">
+    <div class="footer-logo">ALLOY WHEELS INFO</div>
+    <div>Fitment data for reference only — verify with manufacturer</div>
+    <div><a href="sitemap.xml">Sitemap</a></div>
 </footer>
 
 <script>
-(function() {
+(function () {
     let fitmentData = [];
     let modelsByMake = {};
-    let currentResult = null;
-    
-    const makeSelect = document.getElementById('makeSelect');
-    const modelSelect = document.getElementById('modelSelect');
-    const resetBtn = document.getElementById('resetBtn');
-    const resultGrid = document.getElementById('fitmentGrid');
-    const resultCount = document.getElementById('resultCount');
-    const statsBadge = document.getElementById('statsBadge');
-    
-    // Clean PCD display (remove "0x" prefix and "None" suffix)
+
+    const makeSelect   = document.getElementById('makeSelect');
+    const modelSelect  = document.getElementById('modelSelect');
+    const resetBtn     = document.getElementById('resetBtn');
+    const output       = document.getElementById('fitmentOutput');
+    const resultsTitle = document.getElementById('resultsTitle');
+    const statusDot    = document.getElementById('statusDot');
+    const statusText   = document.getElementById('statusText');
+    const statsBadge   = document.getElementById('statsBadge');
+    const heroCount    = document.getElementById('heroCount');
+    const heroMakes    = document.getElementById('heroMakes');
+
+    function setStatus(state, text) {
+        statusDot.className = 'status-dot' + (state === 'loading' ? ' loading' : state === 'error' ? ' error' : '');
+        statusText.textContent = text;
+    }
+
     function cleanPCD(pcd) {
         if (!pcd) return '—';
-        let cleaned = pcd.replace(/^0x/, '').replace(/ None$/, '').replace(/None/, '').trim();
-        return cleaned || '—';
+        return pcd.replace(/^0x/, '').replace(/ ?None$/i, '').trim() || '—';
     }
-    
-    function createWolfraceUrl(title) {
-        let slug = title.toLowerCase()
-            .replace(/ to /g, '-to-')
-            .replace(/ /g, '-')
-            .replace(/[^a-z0-9-]/g, '')
-            .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '');
-        return `https://www.wolfrace.co.uk/${slug}-alloy-wheels`;
+
+    function esc(s) {
+        if (!s) return '';
+        return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     }
-    
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+
+    function wolfraceUrl(title) {
+        return 'https://www.wolfrace.co.uk/' +
+            title.toLowerCase().replace(/ to /g,'-to-').replace(/ /g,'-').replace(/[^a-z0-9-]/g,'').replace(/-+/g,'-').replace(/^-|-$/g,'') +
+            '-alloy-wheels';
     }
-    
-    function renderSingleResult(record) {
-        if (!record) {
-            resultGrid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> Select a make and model to view fitment specs</div>';
-            resultCount.innerHTML = 'No selection';
-            return;
-        }
-        
-        const wolfraceUrl = createWolfraceUrl(record.title);
-        resultCount.innerHTML = `Fitment for ${escapeHtml(record.title)}`;
-        resultGrid.innerHTML = `
-            <div class="fitment-card">
-                <div class="vehicle-title"><i class="fas fa-car"></i> ${escapeHtml(record.title)}</div>
-                <div class="spec-row">
-                    <span class="spec-tag spec-tag-pcd">PCD: ${cleanPCD(record.pcd)}</span>
-                    <span class="spec-tag">Offset: ${record.offset || '—'}</span>
-                    <span class="spec-tag">Centre Bore: ${record.hubBore || '—'}mm</span>
-                </div>
-                <div class="spec-row">
-                    <span class="spec-tag">Thread: ${record.thread || '—'}</span>
-                    <span class="spec-tag">${record.type || '—'}</span>
-                    <span class="spec-tag">Hex: ${record.hex || '—'}</span>
-                </div>
-                <div class="spec-row">
-                    <span class="spec-tag">Tyre: ${record.tyre || '—'}</span>
-                    <span class="spec-tag">Width Range: ${record.width || '—'}"</span>
-                </div>
-                <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
+
+    function renderEmpty() {
+        output.innerHTML = `
+        <div class="empty-state">
+            <div class="empty-icon">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#6b7585" stroke-width="1.2">
+                    <circle cx="18" cy="18" r="15"/>
+                    <circle cx="18" cy="18" r="5"/>
+                    <line x1="18" y1="3" x2="18" y2="13"/>
+                    <line x1="18" y1="23" x2="18" y2="33"/>
+                    <line x1="3" y1="18" x2="13" y2="18"/>
+                    <line x1="23" y1="18" x2="33" y2="18"/>
+                    <line x1="7.4" y1="7.4" x2="14.5" y2="14.5"/>
+                    <line x1="21.5" y1="21.5" x2="28.6" y2="28.6"/>
+                    <line x1="28.6" y1="7.4" x2="21.5" y2="14.5"/>
+                    <line x1="14.5" y1="21.5" x2="7.4" y2="28.6"/>
+                </svg>
             </div>
-        `;
+            <div class="empty-title">No Vehicle Selected</div>
+            <div class="empty-sub">Choose a make and model above to retrieve fitment specifications</div>
+        </div>`;
+        resultsTitle.innerHTML = 'FITMENT <span>DATA</span>';
     }
-    
-    function populateModelDropdown(make) {
-        const models = modelsByMake[make] || [];
-        modelSelect.innerHTML = '<option value="">-- Select Model --</option>';
-        if (models.length === 0) {
-            modelSelect.disabled = true;
-            return;
-        }
-        
-        models.sort((a, b) => a.title.localeCompare(b.title));
-        models.forEach(model => {
-            const option = document.createElement('option');
-            option.value = model.title;
-            option.textContent = model.title.length > 60 ? model.title.substring(0, 57) + '...' : model.title;
-            option.dataset.record = JSON.stringify(model);
-            modelSelect.appendChild(option);
+
+    function renderRecord(r) {
+        const pcd    = cleanPCD(r.pcd);
+        const offset = r.offset || '—';
+        const bore   = r.hubBore ? r.hubBore + 'mm' : '—';
+        const thread = r.thread || '—';
+        const type   = r.type || '—';
+        const hex    = r.hex || '—';
+        const tyre   = r.tyre || '—';
+        const width  = r.width ? r.width + '"' : '—';
+        const url    = wolfraceUrl(r.title);
+
+        resultsTitle.innerHTML = `FITMENT <span>RESULTS</span>`;
+
+        output.innerHTML = `
+        <div class="fitment-card">
+            <div class="card-header">
+                <div class="vehicle-name">${esc(r.title)}</div>
+                <div class="vehicle-badge">Fitment Spec</div>
+            </div>
+
+            <div class="wheel-diagram">
+                <div class="wheel-svg-wrap">
+                    <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="70" cy="70" r="65" stroke="#2a3040" stroke-width="1"/>
+                        <circle cx="70" cy="70" r="58" stroke="#e8c84a" stroke-width="1.2" stroke-dasharray="3 4"/>
+                        <circle cx="70" cy="70" r="45" stroke="#2a3040" stroke-width="8" fill="none"/>
+                        <circle cx="70" cy="70" r="20" fill="#1e2430" stroke="#2a3040" stroke-width="1"/>
+                        <circle cx="70" cy="70" r="8" fill="#e8c84a" opacity="0.8"/>
+                        <line x1="70" y1="25" x2="70" y2="50" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="70" y1="90" x2="70" y2="115" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="25" y1="70" x2="50" y2="70" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="90" y1="70" x2="115" y2="70" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="38.4" y1="38.4" x2="56.7" y2="56.7" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="83.3" y1="83.3" x2="101.6" y2="101.6" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="101.6" y1="38.4" x2="83.3" y2="56.7" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="56.7" y1="83.3" x2="38.4" y2="101.6" stroke="#3a4050" stroke-width="5" stroke-linecap="round"/>
+                        <circle cx="70" cy="25" r="4" fill="#e8c84a" opacity="0.6"/>
+                        <circle cx="70" cy="115" r="4" fill="#e8c84a" opacity="0.6"/>
+                        <circle cx="25" cy="70" r="4" fill="#e8c84a" opacity="0.6"/>
+                        <circle cx="115" cy="70" r="4" fill="#e8c84a" opacity="0.6"/>
+                        <circle cx="38.4" cy="38.4" r="4" fill="#e8c84a" opacity="0.6"/>
+                        <circle cx="101.6" cy="38.4" r="4" fill="#e8c84a" opacity="0.6"/>
+                        <circle cx="38.4" cy="101.6" r="4" fill="#e8c84a" opacity="0.6"/>
+                        <circle cx="101.6" cy="101.6" r="4" fill="#e8c84a" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="wheel-annotations">
+                    <div class="annot-row">
+                        <span class="annot-dot" style="background:#e8c84a"></span>
+                        <span class="annot-key">PCD</span>
+                        <span class="annot-val">${esc(pcd)}</span>
+                    </div>
+                    <div class="annot-row">
+                        <span class="annot-dot" style="background:#5a9ecf"></span>
+                        <span class="annot-key">Offset (ET)</span>
+                        <span class="annot-val">${esc(offset)}</span>
+                    </div>
+                    <div class="annot-row">
+                        <span class="annot-dot" style="background:#8ecf5a"></span>
+                        <span class="annot-key">Centre Bore</span>
+                        <span class="annot-val">${esc(bore)}</span>
+                    </div>
+                    <div class="annot-row">
+                        <span class="annot-dot" style="background:#cf7a5a"></span>
+                        <span class="annot-key">Tyre Size</span>
+                        <span class="annot-val">${esc(tyre)}</span>
+                    </div>
+                    <div class="annot-row">
+                        <span class="annot-dot" style="background:#cf5acf"></span>
+                        <span class="annot-key">Rim Width</span>
+                        <span class="annot-val">${esc(width)}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-specs">
+                <div class="spec-cell">
+                    <div class="spec-key">PCD</div>
+                    <div class="spec-val highlight">${esc(pcd)}</div>
+                </div>
+                <div class="spec-cell">
+                    <div class="spec-key">Offset / ET</div>
+                    <div class="spec-val">${esc(offset)}</div>
+                </div>
+                <div class="spec-cell">
+                    <div class="spec-key">Centre Bore</div>
+                    <div class="spec-val">${esc(bore)}</div>
+                </div>
+                <div class="spec-cell">
+                    <div class="spec-key">Thread Size</div>
+                    <div class="spec-val">${esc(thread)}</div>
+                </div>
+                <div class="spec-cell">
+                    <div class="spec-key">Fastener Type</div>
+                    <div class="spec-val">${esc(type)}</div>
+                </div>
+                <div class="spec-cell">
+                    <div class="spec-key">Hex Size</div>
+                    <div class="spec-val">${esc(hex)}</div>
+                </div>
+                <div class="spec-cell">
+                    <div class="spec-key">Tyre Size</div>
+                    <div class="spec-val">${esc(tyre)}</div>
+                </div>
+                <div class="spec-cell">
+                    <div class="spec-key">Width Range</div>
+                    <div class="spec-val">${esc(width)}</div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="notice">Always verify fitment data with vehicle manufacturer</div>
+                <a href="${url}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn">
+                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 2H2v8h8V7"/><path d="M7 2h3v3"/><line x1="10" y1="2" x2="5" y2="7"/></svg>
+                    Shop Wheels at Wolfrace
+                </a>
+            </div>
+        </div>`;
+    }
+
+    function populateModels(make) {
+        const models = (modelsByMake[make] || []).slice().sort((a, b) => a.title.localeCompare(b.title));
+        modelSelect.innerHTML = '<option value="">— Select Model —</option>';
+        models.forEach(m => {
+            const o = document.createElement('option');
+            o.value = m.title;
+            o.textContent = m.title.length > 65 ? m.title.slice(0, 62) + '…' : m.title;
+            o.dataset.r = JSON.stringify(m);
+            modelSelect.appendChild(o);
         });
         modelSelect.disabled = false;
     }
-    
-    function populateMakeDropdown() {
+
+    function populateMakes() {
         const makes = Object.keys(modelsByMake).sort();
-        makeSelect.innerHTML = '<option value="">-- Select Make --</option>';
+        makeSelect.innerHTML = '<option value="">— Select Make —</option>';
         makes.forEach(make => {
-            const option = document.createElement('option');
-            option.value = make;
-            option.textContent = make;
-            makeSelect.appendChild(option);
+            const o = document.createElement('option');
+            o.value = make;
+            o.textContent = make;
+            makeSelect.appendChild(o);
         });
     }
-    
-    function resetSelection() {
+
+    function reset() {
         makeSelect.value = '';
-        modelSelect.innerHTML = '<option value="">-- Select Model --</option>';
+        modelSelect.innerHTML = '<option value="">— Select Model —</option>';
         modelSelect.disabled = true;
-        currentResult = null;
-        renderSingleResult(null);
-        statsBadge.innerHTML = `<i class="fas fa-database"></i> ${fitmentData.length} records loaded`;
-        const url = new URL(window.location);
-        url.searchParams.delete('car');
-        window.history.replaceState({}, '', url);
+        renderEmpty();
+        const u = new URL(location);
+        u.searchParams.delete('car');
+        history.replaceState({}, '', u);
     }
-    
-    function loadCarFromURL() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const carSlug = urlParams.get('car');
-        if (!carSlug || fitmentData.length === 0) return;
-        
-        const searchTerm = carSlug.toLowerCase().replace(/-/g, ' ');
-        let match = fitmentData.find(record => 
-            record.title.toLowerCase() === searchTerm ||
-            record.title.toLowerCase().includes(searchTerm)
-        );
-        
-        if (match) {
-            const make = match.brand || match.title.split(' ')[0];
-            let makeFound = false;
-            for(let i = 0; i < makeSelect.options.length; i++) {
-                if(makeSelect.options[i].value === make) {
-                    makeSelect.selectedIndex = i;
-                    makeSelect.dispatchEvent(new Event('change'));
-                    makeFound = true;
-                    break;
+
+    function loadFromURL() {
+        const slug = new URLSearchParams(location.search).get('car');
+        if (!slug || !fitmentData.length) return;
+        const term = slug.toLowerCase().replace(/-/g, ' ');
+        const match = fitmentData.find(r => r.title.toLowerCase() === term || r.title.toLowerCase().includes(term));
+        if (!match) return;
+        const brand = match.brand || match.title.split(' ')[0];
+        for (let i = 0; i < makeSelect.options.length; i++) {
+            if (makeSelect.options[i].value === brand) {
+                makeSelect.selectedIndex = i;
+                makeSelect.dispatchEvent(new Event('change'));
+                break;
+            }
+        }
+        const iv = setInterval(() => {
+            if (modelSelect.options.length > 1) {
+                clearInterval(iv);
+                for (let i = 0; i < modelSelect.options.length; i++) {
+                    if (modelSelect.options[i].text === match.title) {
+                        modelSelect.selectedIndex = i;
+                        modelSelect.dispatchEvent(new Event('change'));
+                        break;
+                    }
                 }
             }
-            if (makeFound) {
-                const checkInterval = setInterval(() => {
-                    if (modelSelect.options.length > 1) {
-                        clearInterval(checkInterval);
-                        for(let i = 0; i < modelSelect.options.length; i++) {
-                            if(modelSelect.options[i].text === match.title) {
-                                modelSelect.selectedIndex = i;
-                                modelSelect.dispatchEvent(new Event('change'));
-                                break;
-                            }
-                        }
-                    }
-                }, 100);
-                setTimeout(() => clearInterval(checkInterval), 5000);
-            }
-        }
+        }, 80);
+        setTimeout(() => clearInterval(iv), 5000);
     }
-    
+
     async function loadData() {
-        let dataLoaded = false;
-        try {
-            const response = await fetch('fitment-data.json');
-            if (response.ok) {
-                const data = await response.json();
-                fitmentData = Array.isArray(data) ? data : (data.records || []);
-                dataLoaded = true;
-            }
-        } catch(e) { }
-        
-        if (!dataLoaded) {
+        setStatus('loading', 'Loading fitment database…');
+        let data = null;
+        for (const file of ['fitment-data.json', 'fitment-safe.json']) {
             try {
-                const response = await fetch('fitment-safe.json');
-                if (!response.ok) throw new Error('JSON not found');
-                const data = await response.json();
-                fitmentData = Array.isArray(data) ? data : (data.records || []);
-                dataLoaded = true;
-            } catch(err) {
-                statsBadge.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error loading data`;
-                resultGrid.innerHTML = `<div class="no-results"><i class="fas fa-exclamation-triangle"></i> Unable to load fitment data.</div>`;
-                return;
-            }
+                const res = await fetch(file);
+                if (res.ok) { data = await res.json(); break; }
+            } catch (e) {}
         }
-        
-        if (!fitmentData.length) {
-            statsBadge.innerHTML = `<i class="fas fa-exclamation-triangle"></i> No data found`;
+        if (!data) {
+            setStatus('error', 'Failed to load fitment data');
+            output.innerHTML = '<div class="empty-state"><div class="empty-title">Data Unavailable</div><div class="empty-sub">Could not load fitment database.</div></div>';
             return;
         }
-        
-        fitmentData.forEach(record => {
-            let brand = record.brand;
-            if (!brand && record.title) {
-                brand = record.title.split(' ')[0];
-            }
+        fitmentData = Array.isArray(data) ? data : (data.records || []);
+        fitmentData.forEach(r => {
+            const brand = r.brand || (r.title && r.title.split(' ')[0]);
             if (!brand) return;
             if (!modelsByMake[brand]) modelsByMake[brand] = [];
-            modelsByMake[brand].push({
-                title: record.title,
-                hubBore: record.hubBore,
-                thread: record.thread,
-                hex: record.hex,
-                type: record.type,
-                pcd: record.pcd,
-                offset: record.offset,
-                width: record.width,
-                tyre: record.tyre,
-                brand: brand
-            });
+            modelsByMake[brand].push({ title: r.title, hubBore: r.hubBore, thread: r.thread, hex: r.hex, type: r.type, pcd: r.pcd, offset: r.offset, width: r.width, tyre: r.tyre, brand });
         });
-        
-        populateMakeDropdown();
-        statsBadge.innerHTML = `<i class="fas fa-database"></i> ${fitmentData.length} fitment records`;
-        renderSingleResult(null);
-        loadCarFromURL();
+        const makeCount = Object.keys(modelsByMake).length;
+        populateMakes();
+        statsBadge.textContent = fitmentData.length.toLocaleString() + ' RECORDS';
+        heroCount.textContent  = fitmentData.length.toLocaleString();
+        heroMakes.textContent  = makeCount;
+        setStatus('ready', fitmentData.length.toLocaleString() + ' fitment records loaded across ' + makeCount + ' makes');
+        renderEmpty();
+        loadFromURL();
     }
-    
-    makeSelect.addEventListener('change', function() {
-        const selectedMake = this.value;
-        if (!selectedMake) {
-            resetSelection();
-            return;
-        }
-        populateModelDropdown(selectedMake);
-        modelSelect.value = '';
-        currentResult = null;
-        renderSingleResult(null);
-        resultCount.innerHTML = `Select a model for ${selectedMake}`;
+
+    makeSelect.addEventListener('change', function () {
+        if (!this.value) { reset(); return; }
+        populateModels(this.value);
+        renderEmpty();
+        resultsTitle.innerHTML = 'SELECT A <span>MODEL</span>';
         modelSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-    
-    modelSelect.addEventListener('change', function() {
-        const selectedOption = modelSelect.options[modelSelect.selectedIndex];
-        if (!selectedOption || !selectedOption.value) {
-            currentResult = null;
-            renderSingleResult(null);
-            return;
-        }
+
+    modelSelect.addEventListener('change', function () {
+        const opt = this.options[this.selectedIndex];
+        if (!opt || !opt.value) { renderEmpty(); return; }
         try {
-            const record = JSON.parse(selectedOption.dataset.record);
-            currentResult = record;
-            renderSingleResult(record);
-            const slug = record.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
-            const url = new URL(window.location);
-            url.searchParams.set('car', slug);
-            window.history.replaceState({}, '', url);
-        } catch(e) {
-            const title = selectedOption.value;
-            const make = makeSelect.value;
-            const found = modelsByMake[make]?.find(m => m.title === title);
-            if (found) {
-                currentResult = found;
-                renderSingleResult(found);
-                const slug = found.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
-                const url = new URL(window.location);
-                url.searchParams.set('car', slug);
-                window.history.replaceState({}, '', url);
-            }
+            const r = JSON.parse(opt.dataset.r);
+            renderRecord(r);
+            const slug = r.title.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+            const u = new URL(location);
+            u.searchParams.set('car', slug);
+            history.replaceState({}, '', u);
+        } catch (e) {
+            const found = (modelsByMake[makeSelect.value] || []).find(m => m.title === opt.value);
+            if (found) renderRecord(found);
         }
     });
-    
-    resetBtn.addEventListener('click', resetSelection);
+
+    resetBtn.addEventListener('click', reset);
     loadData();
-    
-    setTimeout(() => {
-        if (typeof(adsbygoogle) !== 'undefined') {
-            try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-        }
-    }, 1500);
 })();
 </script>
 </body>
