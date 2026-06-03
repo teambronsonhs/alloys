@@ -186,38 +186,42 @@
         });
     }
     
-    function renderSingleResult(record) {
-        if (!record) {
-            resultGrid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> Select a make and model to view fitment specs</div>';
-            resultCount.innerHTML = 'No selection';
-            return;
-        }
-        
-        const wolfraceUrl = createWolfraceUrl(record.title);
-        resultCount.innerHTML = `Fitment for ${escapeHtml(record.title)}`;
-        resultGrid.innerHTML = `
-            <div class="fitment-card">
-                <div class="vehicle-title"><i class="fas fa-car"></i> ${escapeHtml(record.title)}</div>
-                <div class="spec-row">
-                    <span class="spec-tag spec-tag-pcd">PCD: ${record.pcd || '—'}</span>
-                    <span class="spec-tag">Offset: ${record.offset || '—'}</span>
-                    <span class="spec-tag">Centre Bore: ${record.hubBore || '—'}mm</span>
-                </div>
-                <div class="spec-row">
-                    <span class="spec-tag">Thread: ${record.thread || '—'}</span>
-                    <span class="spec-tag">${record.type || '—'}</span>
-                    <span class="spec-tag">Hex: ${record.hex || '—'}</span>
-                </div>
-                <div class="spec-row">
-                    <span class="spec-tag">Tyre: ${record.tyre || '—'}</span>
-                    <span class="spec-tag">Width Range: ${record.width || '—'}"</span>
-                </div>
-                <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
-            </div>
-        `;
-        // Scroll to results after rendering
-        scrollToResults();
+    function cleanPCD(pcd) {
+    if (!pcd) return '—';
+    let cleaned = pcd.replace(/^0x/, '').replace(/ None$/, '').replace(/None/, '').trim();
+    return cleaned || '—';
+}
+
+function renderSingleResult(record) {
+    if (!record) {
+        resultGrid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> Select a make and model to view fitment specs</div>';
+        resultCount.innerHTML = 'No selection';
+        return;
     }
+    
+    const wolfraceUrl = createWolfraceUrl(record.title);
+    resultCount.innerHTML = `Fitment for ${escapeHtml(record.title)}`;
+    resultGrid.innerHTML = `
+        <div class="fitment-card">
+            <div class="vehicle-title"><i class="fas fa-car"></i> ${escapeHtml(record.title)}</div>
+            <div class="spec-row">
+                <span class="spec-tag spec-tag-pcd">PCD: ${cleanPCD(record.pcd)}</span>
+                <span class="spec-tag">Offset: ${record.offset || '—'}</span>
+                <span class="spec-tag">Centre Bore: ${record.hubBore || '—'}mm</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-tag">Thread: ${record.thread || '—'}</span>
+                <span class="spec-tag">${record.type || '—'}</span>
+                <span class="spec-tag">Hex: ${record.hex || '—'}</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-tag">Tyre: ${record.tyre || '—'}</span>
+                <span class="spec-tag">Width Range: ${record.width || '—'}"</span>
+            </div>
+            <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
+        </div>
+    `;
+}
     
     function populateModelDropdown(make) {
         const models = modelsByMake[make] || [];
