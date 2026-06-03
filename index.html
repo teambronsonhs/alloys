@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Google AdSense -->
+    <!-- Google AdSense - Auto Ads only -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9372101106094036" crossorigin="anonymous"></script>
     
     <style>
@@ -30,68 +30,132 @@
             --border: #2a2f3e;
         }
         
-        .header { background: rgba(10,14,23,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 1rem 1.5rem; }
+        .header { background: rgba(10,14,23,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 1rem 2rem; }
         .header-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
         .logo { font-size: 1.7rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .logo i { background: none; color: var(--primary); }
         .nav-links { display: flex; gap: 1.2rem; }
         .nav-links a { color: #ccc; text-decoration: none; font-weight: 500; transition: 0.2s; }
         .nav-links a:hover { color: var(--primary); }
-        .container { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem 2rem; }
         .hero { text-align: center; margin-bottom: 2rem; }
-        .hero h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .hero p { color: #9aa4bf; max-width: 650px; margin: 0.5rem auto 0; font-size: 0.9rem; }
-        .stats-badge { display: inline-block; background: var(--surface); padding: 0.3rem 1rem; border-radius: 40px; font-size: 0.7rem; margin-top: 1rem; }
-        .search-card { background: var(--dark-card); border-radius: 32px; padding: 1.8rem; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .hero h1 { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero p { color: #9aa4bf; max-width: 650px; margin: 0.5rem auto 0; font-size: 1rem; }
+        .stats-badge { display: inline-block; background: var(--surface); padding: 0.3rem 1rem; border-radius: 40px; font-size: 0.8rem; margin-top: 1rem; }
+        .search-card { background: var(--dark-card); border-radius: 32px; padding: 2rem; border: 1px solid var(--border); margin-bottom: 2rem; }
         .search-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; }
         .search-group { flex: 1; min-width: 200px; }
-        .search-group label { display: block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 0.4rem; }
-        .search-group select, .search-group input { width: 100%; padding: 0.8rem 1rem; background: #1a1f2e; border: 1px solid #2e3545; border-radius: 60px; color: white; font-size: 0.9rem; outline: none; cursor: pointer; }
+        .search-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 0.4rem; }
+        .search-group select, .search-group input { width: 100%; padding: 0.9rem 1rem; background: #1a1f2e; border: 1px solid #2e3545; border-radius: 60px; color: white; font-size: 0.95rem; outline: none; cursor: pointer; }
         .search-group select:focus, .search-group input:focus { border-color: var(--primary); }
         .search-group input::placeholder { color: #6c7a8a; }
-        .search-group select option { background: #1a1f2e; }
-        .search-btn { background: var(--primary); border: none; padding: 0.8rem 2rem; border-radius: 60px; font-weight: 700; color: #0a0e17; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .search-btn { background: var(--primary); border: none; padding: 0.9rem 2rem; border-radius: 60px; font-weight: 700; color: #0a0e17; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: 0.2s; }
         .search-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .reset-btn { background: #2a2f3e; border: none; padding: 0.8rem 1.5rem; border-radius: 60px; font-weight: 500; color: white; cursor: pointer; }
+        .reset-btn { background: #2a2f3e; border: none; padding: 0.9rem 1.5rem; border-radius: 60px; font-weight: 500; color: white; cursor: pointer; transition: 0.2s; }
+        .reset-btn:hover { background: #3a3f4e; }
         
-        /* Ad containers */
-        .ad-container {
-            text-align: center;
-            margin: 1.5rem auto;
-            min-height: 90px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 20px;
+        .results-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        .results-header h3 { font-size: 1.3rem; }
+        
+        .fitment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 1.5rem; }
+        
+        .fitment-card {
+            background: linear-gradient(135deg, #111622 0%, #0d111a 100%);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .fitment-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.4);
+        }
+        
+        .vehicle-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px dashed rgba(52,152,219,0.3);
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            gap: 0.5rem;
+            color: #fff;
+        }
+        .vehicle-title i { color: var(--primary); font-size: 1.2rem; }
+        
+        .specs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .spec-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+        }
+        .spec-label {
+            font-weight: 600;
+            color: #9aa4bf;
+            min-width: 95px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-value {
+            font-weight: 600;
+            color: #a8d4f5;
+            background: rgba(52,152,219,0.15);
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+        .spec-value-pcd {
+            background: var(--primary-glow);
+            color: var(--primary);
+            font-weight: 700;
         }
         
-        .results-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 1.5rem; }
-        .fitment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.2rem; }
-        .fitment-card { background: var(--dark-card); border-radius: 20px; padding: 1rem; border-left: 3px solid var(--primary); border: 1px solid var(--border); border-left-width: 3px; transition: 0.2s; }
-        .fitment-card:hover { transform: translateY(-3px); border-color: var(--primary); }
-        .vehicle-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; color: #fff; }
-        .spec-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; font-size: 0.7rem; }
-        .spec-tag { background: #1a1f2e; padding: 0.2rem 0.6rem; border-radius: 40px; color: #88c8f0; }
-        .spec-tag-pcd { background: var(--primary-glow); font-weight: 600; color: var(--primary); }
-        .wolfrace-btn { display: inline-flex; align-items: center; gap: 5px; background: #1a1f2e; border: 1px solid var(--primary); color: var(--primary); padding: 0.35rem 0.7rem; border-radius: 60px; font-size: 0.65rem; font-weight: 600; text-decoration: none; margin-top: 0.5rem; transition: 0.2s; }
-        .wolfrace-btn:hover { background: var(--primary); color: #0a0e17; }
+        .wolfrace-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(52,152,219,0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1.2rem;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .wolfrace-btn:hover {
+            background: var(--primary);
+            color: #0a0e17;
+        }
+        
         .no-results { text-align: center; padding: 3rem; background: var(--dark-card); border-radius: 32px; }
-        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.7rem; color: #6c7a8a; }
+        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.75rem; color: #6c7a8a; }
         footer a { color: var(--primary); text-decoration: none; }
         
-        /* Hide empty ad slots */
-        ins.adsbygoogle[data-ad-status="unfilled"] {
-            display: none !important;
-        }
-        
-        @media (max-width: 700px) { 
-            .hero h1 { font-size: 1.6rem; } 
-            .search-row { flex-direction: column; } 
-            .fitment-grid { grid-template-columns: 1fr; } 
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .fitment-grid { grid-template-columns: 1fr; }
+            .search-card { padding: 1.2rem; }
+            .search-row { flex-direction: column; }
             .search-group { min-width: 100%; }
-            .ad-container { margin: 1rem auto; }
+            .spec-label { min-width: 70px; }
         }
         .loading { text-align: center; padding: 3rem; color: #6c7a8a; }
     </style>
@@ -111,19 +175,8 @@
 <div class="container">
     <div class="hero">
         <h1><i class="fas fa-search"></i> Wheel Fitment Search</h1>
-        <p>Select your car make, then choose model — view PCD, offset, bore & tyre size</p>
+        <p>Select your car make, then choose model — view PCD, offset, bore and tyre size</p>
         <div class="stats-badge" id="statsBadge"><i class="fas fa-spinner fa-pulse"></i> Loading database...</div>
-    </div>
-
-    <!-- Top Ad -->
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9372101106094036"
-             data-ad-slot="9123456789"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <div class="search-card" id="search">
@@ -151,30 +204,8 @@
         </div>
     </div>
 
-    <!-- Middle Ad -->
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9372101106094036"
-             data-ad-slot="9123456790"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
     <div class="results-header"><h3 id="resultCount">Select a make and model</h3></div>
     <div id="fitmentGrid" class="fitment-grid"><div class="loading"><i class="fas fa-spinner fa-pulse"></i> Loading fitment data...</div></div>
-
-    <!-- Bottom Ad -->
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9372101106094036"
-             data-ad-slot="9123456791"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
 </div>
 
 <footer>
@@ -233,24 +264,46 @@
         resultCount.innerHTML = `Fitment for ${escapeHtml(record.title)}`;
         resultGrid.innerHTML = `
             <div class="fitment-card">
-                <div class="vehicle-title"><i class="fas fa-car"></i> ${escapeHtml(record.title)}</div>
-                <div class="spec-row">
-                    <span class="spec-tag spec-tag-pcd">PCD: ${cleanPCD(record.pcd)}</span>
-                    <span class="spec-tag">Offset: ${record.offset || '—'}</span>
-                    <span class="spec-tag">Centre Bore: ${record.hubBore || '—'}mm</span>
+                <div class="vehicle-title">
+                    <i class="fas fa-car"></i> ${escapeHtml(record.title)}
                 </div>
-                <div class="spec-row">
-                    <span class="spec-tag">Thread: ${record.thread || '—'}</span>
-                    <span class="spec-tag">${record.type || '—'}</span>
-                    <span class="spec-tag">Hex: ${record.hex || '—'}</span>
+                <div class="specs-container">
+                    <div class="spec-row">
+                        <span class="spec-label">⚙️ PCD</span>
+                        <span class="spec-value spec-value-pcd">${cleanPCD(record.pcd)}</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">📏 Offset</span>
+                        <span class="spec-value">${record.offset || '—'} mm</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">🎯 Centre Bore</span>
+                        <span class="spec-value">${record.hubBore || '—'} mm</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">🔩 Thread</span>
+                        <span class="spec-value">${record.thread || '—'}</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">🔧 Fastener</span>
+                        <span class="spec-value">${record.type || '—'} (Hex ${record.hex || '—'})</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">🛞 Tyre Size</span>
+                        <span class="spec-value">${record.tyre || '—'}</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">📐 Wheel Width</span>
+                        <span class="spec-value">${record.width || '—'} inches</span>
+                    </div>
                 </div>
-                <div class="spec-row">
-                    <span class="spec-tag">Tyre: ${record.tyre || '—'}</span>
-                    <span class="spec-tag">Width Range: ${record.width || '—'}"</span>
-                </div>
-                <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
+                <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn">
+                    <i class="fas fa-external-link-alt"></i> Search for wheels on Wolfrace
+                </a>
             </div>
         `;
+        
+        resultGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     
     function populateModelDropdown(make) {
@@ -355,7 +408,7 @@
                 dataLoaded = true;
             } catch(err) {
                 statsBadge.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error loading data`;
-                resultGrid.innerHTML = `<div class="no-results"><i class="fas fa-exclamation-triangle"></i> Unable to load fitment data. Please ensure fitment-data.json exists.</div>`;
+                resultGrid.innerHTML = `<div class="no-results"><i class="fas fa-exclamation-triangle"></i> Unable to load fitment data.</div>`;
                 return;
             }
         }
@@ -438,14 +491,6 @@
     
     resetBtn.addEventListener('click', resetSelection);
     loadData();
-    
-    setTimeout(() => {
-        if (typeof(adsbygoogle) !== 'undefined') {
-            try { 
-                (adsbygoogle = window.adsbygoogle || []).push({}); 
-            } catch(e) {}
-        }
-    }, 500);
 })();
 </script>
 </body>
