@@ -1,0 +1,152 @@
+/* Results and fitment card styles */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border);
+}
+
+.results-count {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+.fitment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.fitment-card {
+    background: linear-gradient(135deg, #111622 0%, #0d111a 100%);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--primary);
+    transition: all var(--transition-slow);
+    box-shadow: var(--shadow-lg);
+}
+
+.fitment-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-2xl);
+}
+
+.vehicle-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px dashed rgba(52, 152, 219, 0.3);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.vehicle-title i {
+    color: var(--primary);
+    font-size: var(--font-size-xl);
+}
+
+.specs-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.spec-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+.spec-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    min-width: 95px;
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.spec-value {
+    font-weight: var(--font-weight-semibold);
+    color: #a8d4f5;
+    background: rgba(52, 152, 219, 0.15);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 30px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: var(--font-size-sm);
+}
+
+.spec-value-pcd {
+    background: var(--primary-glow);
+    color: var(--primary);
+    font-weight: var(--font-weight-bold);
+}
+
+.wolfrace-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(52, 152, 219, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    margin-top: var(--spacing-lg);
+    width: 100%;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.wolfrace-btn:hover {
+    background: var(--primary);
+    color: var(--dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.wolfrace-btn:active {
+    transform: translateY(0);
+}
+
+.no-results {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: var(--dark-card);
+    border-radius: var(--border-radius-xl);
+    border: 1px dashed var(--border);
+}
+
+.no-results i {
+    font-size: var(--font-size-4xl);
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.loading {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.loading i {
+    font-size: var(--font-size-2xl);
+}
