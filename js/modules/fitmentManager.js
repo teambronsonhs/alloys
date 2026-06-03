@@ -12,31 +12,42 @@ export class FitmentManager {
      * Load fitment data from JSON files
      */
     async loadData() {
-        try {
-            // Try primary data file first
-            const response = await fetch('fitment-data.json');
-            if (response.ok) {
-                this.fitmentData = await response.json();
-                this.organizData();
+    // Try primary file first
+    try {
+        const response = await fetch('/fitment-data.json');
+        if (response.ok) {
+            const data = await response.json();
+            // Handle both array and object formats
+            this.fitmentData = Array.isArray(data) ? data : (data.records || []);
+            if (this.fitmentData.length > 0) {
+                this.organizeData();
+                console.log(`Loaded ${this.fitmentData.length} records from fitment-data.json`);
                 return;
             }
-        } catch (error) {
-            console.warn('Primary data file not found, trying fallback');
         }
-
-        try {
-            // Try fallback data file
-            const response = await fetch('fitment-safe.json');
-            if (response.ok) {
-                this.fitmentData = await response.json();
-                this.organizData();
-                return;
-            }
-        } catch (error) {
-            console.error('Failed to load data files:', error);
-            throw new Error('Unable to load fitment data');
-        }
+    } catch (error) {
+        console.log('Primary file not available');
     }
+
+    // Try fallback file
+    try {
+        const response = await fetch('/fitment-safe.json');
+        if (response.ok) {
+            const data = await response.json();
+            this.fitmentData = Array.isArray(data) ? data : (data.records || []);
+            if (this.fitmentData.length > 0) {
+                this.organizeData();
+                console.log(`Loaded ${this.fitmentData.length} records from fitment-safe.json`);
+                return;
+            }
+        }
+    } catch (error) {
+        console.error('Fallback file also failed');
+    }
+
+    // If we get here, no data loaded
+    throw new Error('Unable to load fitment data');
+}
 
     /**
      * Organize fitment data by make and model
