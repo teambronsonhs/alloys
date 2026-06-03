@@ -14,7 +14,7 @@ export class FitmentManager {
     async loadData() {
         try {
             // Try primary data file first
-            const response = await fetch('/fitment-data.json');
+            const response = await fetch('fitment-data.json');
             if (response.ok) {
                 this.fitmentData = await response.json();
                 this.organizData();
@@ -26,7 +26,7 @@ export class FitmentManager {
 
         try {
             // Try fallback data file
-            const response = await fetch('/fitment-safe.json');
+            const response = await fetch('fitment-safe.json');
             if (response.ok) {
                 this.fitmentData = await response.json();
                 this.organizData();
