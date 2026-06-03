@@ -20,7 +20,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0e17; color: #e8edf2; line-height: 1.5; }
         
-        /* Alloy Wheels Info - Blue theme */
         :root {
             --primary: #3498db;
             --primary-dark: #2980b9;
@@ -142,7 +141,6 @@
 </footer>
 
 <script>
-// Alloy Wheels Info - Main Script with auto-scroll to results (blue theme)
 (function() {
     let fitmentData = [];
     let modelsByMake = {};
@@ -155,17 +153,13 @@
     const resultCount = document.getElementById('resultCount');
     const statsBadge = document.getElementById('statsBadge');
     
-    // Helper function to scroll to results (mobile fix)
-    function scrollToResults() {
-        const resultsHeader = document.querySelector('.results-header');
-        if (resultsHeader) {
-            resultsHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-            resultGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    // Clean PCD display (remove "0x" prefix and "None" suffix)
+    function cleanPCD(pcd) {
+        if (!pcd) return '—';
+        let cleaned = pcd.replace(/^0x/, '').replace(/ None$/, '').replace(/None/, '').trim();
+        return cleaned || '—';
     }
     
-    // Generate Wolfrace URL from vehicle title
     function createWolfraceUrl(title) {
         let slug = title.toLowerCase()
             .replace(/ to /g, '-to-')
@@ -186,42 +180,36 @@
         });
     }
     
-    function cleanPCD(pcd) {
-    if (!pcd) return '—';
-    let cleaned = pcd.replace(/^0x/, '').replace(/ None$/, '').replace(/None/, '').trim();
-    return cleaned || '—';
-}
-
-function renderSingleResult(record) {
-    if (!record) {
-        resultGrid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> Select a make and model to view fitment specs</div>';
-        resultCount.innerHTML = 'No selection';
-        return;
+    function renderSingleResult(record) {
+        if (!record) {
+            resultGrid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> Select a make and model to view fitment specs</div>';
+            resultCount.innerHTML = 'No selection';
+            return;
+        }
+        
+        const wolfraceUrl = createWolfraceUrl(record.title);
+        resultCount.innerHTML = `Fitment for ${escapeHtml(record.title)}`;
+        resultGrid.innerHTML = `
+            <div class="fitment-card">
+                <div class="vehicle-title"><i class="fas fa-car"></i> ${escapeHtml(record.title)}</div>
+                <div class="spec-row">
+                    <span class="spec-tag spec-tag-pcd">PCD: ${cleanPCD(record.pcd)}</span>
+                    <span class="spec-tag">Offset: ${record.offset || '—'}</span>
+                    <span class="spec-tag">Centre Bore: ${record.hubBore || '—'}mm</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-tag">Thread: ${record.thread || '—'}</span>
+                    <span class="spec-tag">${record.type || '—'}</span>
+                    <span class="spec-tag">Hex: ${record.hex || '—'}</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-tag">Tyre: ${record.tyre || '—'}</span>
+                    <span class="spec-tag">Width Range: ${record.width || '—'}"</span>
+                </div>
+                <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
+            </div>
+        `;
     }
-    
-    const wolfraceUrl = createWolfraceUrl(record.title);
-    resultCount.innerHTML = `Fitment for ${escapeHtml(record.title)}`;
-    resultGrid.innerHTML = `
-        <div class="fitment-card">
-            <div class="vehicle-title"><i class="fas fa-car"></i> ${escapeHtml(record.title)}</div>
-            <div class="spec-row">
-                <span class="spec-tag spec-tag-pcd">PCD: ${cleanPCD(record.pcd)}</span>
-                <span class="spec-tag">Offset: ${record.offset || '—'}</span>
-                <span class="spec-tag">Centre Bore: ${record.hubBore || '—'}mm</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-tag">Thread: ${record.thread || '—'}</span>
-                <span class="spec-tag">${record.type || '—'}</span>
-                <span class="spec-tag">Hex: ${record.hex || '—'}</span>
-            </div>
-            <div class="spec-row">
-                <span class="spec-tag">Tyre: ${record.tyre || '—'}</span>
-                <span class="spec-tag">Width Range: ${record.width || '—'}"</span>
-            </div>
-            <a href="${wolfraceUrl}" target="_blank" rel="sponsored nofollow" class="wolfrace-btn"><i class="fas fa-external-link-alt"></i> Search for wheels wolfrace.co.uk</a>
-        </div>
-    `;
-}
     
     function populateModelDropdown(make) {
         const models = modelsByMake[make] || [];
@@ -265,15 +253,12 @@ function renderSingleResult(record) {
         window.history.replaceState({}, '', url);
     }
     
-    // Load car from URL parameter
     function loadCarFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
         const carSlug = urlParams.get('car');
-        
         if (!carSlug || fitmentData.length === 0) return;
         
         const searchTerm = carSlug.toLowerCase().replace(/-/g, ' ');
-        
         let match = fitmentData.find(record => 
             record.title.toLowerCase() === searchTerm ||
             record.title.toLowerCase().includes(searchTerm)
@@ -282,7 +267,6 @@ function renderSingleResult(record) {
         if (match) {
             const make = match.brand || match.title.split(' ')[0];
             let makeFound = false;
-            
             for(let i = 0; i < makeSelect.options.length; i++) {
                 if(makeSelect.options[i].value === make) {
                     makeSelect.selectedIndex = i;
@@ -291,7 +275,6 @@ function renderSingleResult(record) {
                     break;
                 }
             }
-            
             if (makeFound) {
                 const checkInterval = setInterval(() => {
                     if (modelSelect.options.length > 1) {
@@ -310,10 +293,8 @@ function renderSingleResult(record) {
         }
     }
     
-    // Load JSON file
     async function loadData() {
         let dataLoaded = false;
-        
         try {
             const response = await fetch('fitment-data.json');
             if (response.ok) {
@@ -332,7 +313,7 @@ function renderSingleResult(record) {
                 dataLoaded = true;
             } catch(err) {
                 statsBadge.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error loading data`;
-                resultGrid.innerHTML = `<div class="no-results"><i class="fas fa-exclamation-triangle"></i> Unable to load fitment data. Please ensure fitment-data.json exists.</div>`;
+                resultGrid.innerHTML = `<div class="no-results"><i class="fas fa-exclamation-triangle"></i> Unable to load fitment data.</div>`;
                 return;
             }
         }
@@ -380,7 +361,6 @@ function renderSingleResult(record) {
         currentResult = null;
         renderSingleResult(null);
         resultCount.innerHTML = `Select a model for ${selectedMake}`;
-        // Scroll to model dropdown after make selection (helps on mobile)
         modelSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
     
@@ -391,7 +371,6 @@ function renderSingleResult(record) {
             renderSingleResult(null);
             return;
         }
-        
         try {
             const record = JSON.parse(selectedOption.dataset.record);
             currentResult = record;
@@ -400,7 +379,6 @@ function renderSingleResult(record) {
             const url = new URL(window.location);
             url.searchParams.set('car', slug);
             window.history.replaceState({}, '', url);
-            // Scroll handled inside renderSingleResult
         } catch(e) {
             const title = selectedOption.value;
             const make = makeSelect.value;
@@ -412,7 +390,6 @@ function renderSingleResult(record) {
                 const url = new URL(window.location);
                 url.searchParams.set('car', slug);
                 window.history.replaceState({}, '', url);
-                // Scroll handled inside renderSingleResult
             }
         }
     });
